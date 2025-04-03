@@ -1,0 +1,15 @@
+<p style="color: green"><%= notice %></p>
+
+<div class="row mt-2">
+  <div class="col-6 mb-2">
+    <h2>药房清单</h2>
+  </div>
+  <div class="col-6">
+    <%= link_to "新建药店", new_store_path, class: "float-end link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" %>
+  </div>
+  <div class="col-12" id="stores">
+    <% @stores.each do |store| %>
+      <%= render store %>
+    <% end %>
+  </div>
+</div>

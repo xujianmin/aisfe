@@ -1,0 +1,17 @@
+<div class="card" id="<%= dom_id store %>">
+  <div class="card-header">
+    <span class="badge text-bg-primary pl-4">优先级：<%= store.level %></span>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">
+      <%= link_to store.name, store, class: "link-offset-2" %>
+    </h5>
+    <hr />
+    <p class="card-text">
+      地址：<%= store.address %>
+    </p>
+    <p class="card-text">
+      简述：<%= store.description %>
+    </p>
+  </div>
+</div>

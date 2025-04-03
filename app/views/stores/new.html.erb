@@ -1,0 +1,13 @@
+<% content_for :title, "New store" %>
+<div class="row mt-2">
+  <div class="col-6">
+    <h2>新建药房</h2>
+  </div>
+  <div class="col-6"><%= link_to "返回清单", stores_path, class: "float-end link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" %></div>
+  <div class="col-12">
+    <%= render "form", store: @store %>
+  </div>
+</div>
+
+
+
