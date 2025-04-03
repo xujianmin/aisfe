@@ -33,10 +33,16 @@ module Aisfe
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #
-    # config.time_zone = "Central Time (US & Canada)"
+    config.time_zone = "Beijing" # 或者使用 "Asia/Shanghai"
+    config.active_record.default_timezone = :local  # 设置数据库时间存储
     # config.eager_load_paths << Rails.root.join("extras")
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # 设置默认语言为中文
+    config.i18n.default_locale = :'zh-CN'
+    # 设置可用的语言
+    config.i18n.available_locales = [ :'zh-CN', :en ]
   end
 end

@@ -1,13 +1,18 @@
 <%= form_with(model: store) do |form| %>
   <% if store.errors.any? %>
-    <div class="alert alert-danger">
-      <h2><%= pluralize(store.errors.count, "error") %> prohibited this store from being saved:</h2>
+    <div class="alert alert-danger alert-dismissible fade show">
+      <strong><%= t('errors.template.header', 
+                    count: store.errors.count, 
+                    model: store.class.model_name.human) %>
+      </strong>
 
       <ul class="m-0">
         <% store.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
+
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   <% end %>
 
