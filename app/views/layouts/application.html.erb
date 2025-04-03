@@ -23,6 +23,10 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container">
+      <%= render "shared/top_nav" %>
+    
+      <%= yield %>
+    </div>
   </body>
 </html>
