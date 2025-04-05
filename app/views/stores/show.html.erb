@@ -2,9 +2,29 @@
 
 <%= render @store %>
 
-<div>
-  <%= link_to "Edit this store", edit_store_path(@store) %> |
-  <%= link_to "Back to stores", stores_path %>
-
-  <%= button_to "Destroy this store", @store, method: :delete %>
+<div class="mt-3 row">
+  <div class="col-4"><%= link_to "修改药店", edit_store_path(@store), class: "btn btn-primary d-grid" %></div>
+  <div class="col-4"><%= link_to "返回清单", stores_path, class: "btn btn-primary d-grid" %></div>
+  <div class="col-4">
+    <%= button_to "删除此店", 
+                  @store, 
+                  method: :delete,
+                  data: { turbo_confirm: "确定删除此店吗？" },
+                  form: { class: "d-grid" }, 
+                  class: "btn btn-danger" %>
+  </div>
 </div>
+<hr />
+<div class="mt-3 row">
+  <div class="col">
+    <%= link_to "增加店员", new_clerk_path(store_id: @store), class: "btn btn-primary" %>
+  </div>
+</div>
+<hr />
+<% if @store.clerks %>
+
+  <% @store.clerks.each do |clerk| %>
+    <%= render clerk %>
+  <% end %>
+
+<% end %>

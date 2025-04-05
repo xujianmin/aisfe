@@ -1,0 +1,47 @@
+<%= form_with(model: clerk) do |form| %>
+  <% if clerk.errors.any? %>
+    <div class="alert alert-danger alert-dismissible fade show">
+      <strong><%= t('errors.template.header', 
+                    count: clerk.errors.count, 
+                    model: clerk.class.model_name.human) %>
+      </strong>
+
+      <ul class="m-0">
+        <% clerk.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+      
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% end %>
+
+  <div class= "mb-3">
+    <%= form.label :last_name, style: "display: none", class: "form-label" %>
+    <%= form.text_field :last_name, class: "form-control", placeholder: "姓氏"  %>
+  </div>
+
+  <div class= "mb-3">
+    <%= form.label :first_name, style: "display: none", class: "form-label" %>
+    <%= form.text_field :first_name, class: "form-control", placeholder: "名字"  %>
+  </div>
+
+  <div class= "mb-3">
+    <%= form.label :gender, style: "display: none", class: "form-label" %>
+    <%= form.text_field :gender, class: "form-control", placeholder: "性别"  %>
+  </div>
+
+  <div class= "mb-3">
+    <%= form.label :remark, style: "display: none", class: "form-label" %>
+    <%= form.textarea :remark, class: "form-control", placeholder: "备注", rows: 5  %>
+  </div>
+
+  <div class= "mb-3" style="display: none">
+    <%= form.label :store_id, style: "display: none", class: "form-label" %>
+    <%= form.text_field :store_id, class: "form-control" %>
+  </div>
+
+  <div class="d-grid">
+    <%= form.submit class: "btn btn-lg btn-primary"%>
+  </div>
+<% end %>

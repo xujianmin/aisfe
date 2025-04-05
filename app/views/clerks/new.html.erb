@@ -1,0 +1,10 @@
+<% content_for :title, "New clerk" %>
+<div class="row my-3">
+  <span class="fs-5">新增店员到：
+    <%= link_to @clerk.store.name, 
+                store_path(@clerk.store), 
+                class: "link-offset-2" %>
+  </span>
+</div>
+<hr />
+<%= render "form", clerk: @clerk %>
