@@ -1,24 +1,39 @@
 <div class="row mt-3">
   <div class="col-12 mb-3">
     <div class="card">
-      <div class="card-header">
-        <%= button_to "登出系统", session_path(@user), method: :delete, data: { turbo_confirm: "确定登出系统？" }, class: "btn btn-sm btn-danger float-end" %>
-      </div>
-      <div class="card-body">
-        <h6 class="card-title"><%= @user.email_address%> 的工作台</h6>
+      <div class="card-body row">
+        <div class="col-8"><p class="card-title"><%= @user.email_address%> 的工作台</p></div>
+        <div class="col-4"><%= button_to "登出系统", session_path(@user), method: :delete, data: { turbo_confirm: "确定登出系统？" }, class: "btn btn-sm btn-danger float-end" %></div>
       </div>
     </div>
   </div>
-  <div class="col-12">
+  <div class="col-12 col-sm-4 mb-3">
     <div class="card">
       <div class="card-body">
-        您当前负责<%= @user.stores.count %>个药店
+        <small class="text-secondary">当前负责药店数量</small>
+        <p class="fs-1 fw-bolder text-center mb-0 "><%= @user.stores.count %></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-sm-4 mb-3">
+    <div class="card">
+      <div class="card-body">
+        <small class="text-secondary">当前负责药店数量</small>
+        <p class="fs-1 fw-bolder text-center mb-0 "><%= @user.stores.count %></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-sm-4 mb-3">
+    <div class="card">
+      <div class="card-body">
+        <small class="text-secondary">当前负责药店数量</small>
+        <p class="fs-1 fw-bolder text-center mb-0 "><%= @user.stores.count %></p>
       </div>
     </div>
   </div>
   <div class="col-12">
-    <% @user.stores.each do |store| %>
-      <%= render store %>
+    <% @user.stores.each_with_index do |store, index| %>
+      <%= render store, index: index %>
     <% end %>
   </div>
 </div>

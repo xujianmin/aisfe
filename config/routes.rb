@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :clerks
   resources :stores
   get "dashboard/index"
+  get "dashboard/store/:store_id", to: "dashboard#store", as: "dashboard/store/"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

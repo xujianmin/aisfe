@@ -1,10 +1,17 @@
-<div class="card" id="<%= dom_id store %>">
+<div class="card mb-2" id="<%= dom_id store %>">
   <div class="card-header">
-    <span class="badge text-bg-primary pl-4">优先级：<%= store.level %></span>
+    <% if local_assigns.has_key?(:index) %>
+      <span class="badge rounded-pill text-bg-secondary"><%= index+1 %></span>
+    <% end %>
+    <span class="badge text-bg-primary pl-4 float-end">优先级：<%= store.level %></span>
   </div>
   <div class="card-body">
     <h5 class="card-title">
-      <%= link_to store.name, store, class: "link-offset-2" %>
+      <% if controller.controller_name == "dashboard" %>
+        <%= link_to store.name, dashboard_store_path(store_id: store), class: "link-offset-2" %>
+      <% else %>
+        <%= link_to store.name, store, class: "link-offset-2" %>
+      <% end %>
     </h5>
     <hr />
     <p class="card-text">
@@ -13,8 +20,8 @@
     <p class="card-text">
       简述：<%= store.description %>
     </p>
-    <p class="card-text">
-      <%= store.updated_at %>
-    </p>
+    <small class="card-text">
+      数据更新于：<%= store.updated_at %>
+    </small>
   </div>
 </div>
