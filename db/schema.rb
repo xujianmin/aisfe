@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_10_085454) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_10_141945) do
   create_table "clerks", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -22,6 +22,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_10_085454) do
     t.index ["store_id"], name: "index_clerks_on_store_id"
   end
 
+  create_table "drugs", force: :cascade do |t|
+    t.string "product_name"
+    t.string "nmc"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "ip_address"
@@ -29,6 +36,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_10_085454) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_sessions_on_user_id"
+  end
+
+  create_table "stocks", force: :cascade do |t|
+    t.integer "quantity"
+    t.integer "distribution_quantity"
+    t.integer "store_id", null: false
+    t.integer "drug_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["drug_id"], name: "index_stocks_on_drug_id"
+    t.index ["store_id"], name: "index_stocks_on_store_id"
   end
 
   create_table "stores", force: :cascade do |t|
@@ -52,5 +70,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_10_085454) do
 
   add_foreign_key "clerks", "stores"
   add_foreign_key "sessions", "users"
+  add_foreign_key "stocks", "drugs"
+  add_foreign_key "stocks", "stores"
   add_foreign_key "stores", "users"
 end

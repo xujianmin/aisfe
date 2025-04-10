@@ -4,4 +4,27 @@
       <%= @store.name %>
     </div>
   </div>
+
+  <div class="col-12 mt-3">
+    <div class="scrollable-area" style="height: calc(100vh - 200px); overflow-y: auto;">
+      <table class="table table-striped">
+        <thead class="sticky-top bg-white">
+          <tr>
+            <th>药品名称</th>
+            <th>库存</th>
+            <th>分销数量</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @store.stocks.each do |stock| %>
+            <tr>
+              <td><%= stock.drug.product_name %></td>
+              <td><%= stock.quantity %></td>
+              <td><%= stock.distribution_quantity %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

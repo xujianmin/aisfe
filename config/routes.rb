@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :stocks
+  resources :drugs
   resource :session
   resources :passwords, param: :token
   resources :clerks
