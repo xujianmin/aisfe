@@ -1,5 +1,8 @@
 <div id="<%= dom_id clerk %>" class="card mb-3">
   <div class="card-header">
+    <% if local_assigns.has_key?(:index) %>
+      <span class="badge rounded-pill text-bg-secondary"><%= index+1 %></span>
+    <% end %>
     <%= clerk.fullname %>
   </div>
   <div class="card-body">
