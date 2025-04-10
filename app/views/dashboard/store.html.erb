@@ -17,11 +17,7 @@
         </thead>
         <tbody>
           <% @store.stocks.each do |stock| %>
-            <tr>
-              <td><%= stock.drug.product_name %></td>
-              <td><%= stock.quantity %></td>
-              <td><%= stock.distribution_quantity %></td>
-            </tr>
+            <%= render partial: "drug_table_line_item", locals: { stock: stock } %>
           <% end %>
         </tbody>
       </table>
