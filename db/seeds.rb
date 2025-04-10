@@ -10,7 +10,10 @@
 
 seed_files = [
   'users',
-  'stores'
+  'stores',
+  'drugs',
+  'stocks',
+  'clerks'
 ]
 
 seed_files.each do |seed_file|

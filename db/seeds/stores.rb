@@ -126,6 +126,8 @@ print "生成测试用药店终端..."
 print "========\n\n"
 
 store_data.each_with_index do |store, index|
-  puts index.to_s + "... "
+  print index.to_s + "... "
   Store.create!(store.merge(user_id: rand(1..3)))
 end
+
+puts "成功创建20个药店终端"
