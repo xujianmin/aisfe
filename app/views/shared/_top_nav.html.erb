@@ -1,6 +1,6 @@
 <nav class="navbar bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">白泽智创</a>
+    <%= link_to "白泽智创", root_path, class: "navbar-brand" %>
     <button class="navbar-toggler" 
             type="button" 
             data-bs-toggle="offcanvas" 
@@ -13,20 +13,20 @@
 
   <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
     <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
+      <h5 class="offcanvas-title" id="offcanvasNavbarLabel">我的菜单</h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
       <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <%= link_to "工作台", dashboard_index_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link" href="#">用户管理</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
+            其他配置（占位）
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="#">Action</a></li>
@@ -37,11 +37,11 @@
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li>
+        <hr />
+        <li class="nav-item">
+          <%= button_to "退出系统", session_path, method: :delete, data: { turbo_confirm: "确定现在退出系统？" }, class: "nav-link" %>
+        </li>
       </ul>
-      <form class="d-flex mt-3" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
     </div>
   </div>
 
