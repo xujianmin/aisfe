@@ -1,0 +1,25 @@
+<%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
+<%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <h6>请登入 白泽 AI+SFE</h6>
+    <hr />
+  </div>
+  <div class="col-12">
+    <%= form_with url: session_path do |form| %>
+      <div class="mb-3">
+        <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "邮箱地址", value: params[:email_address], class: "form-control" %>
+      </div>
+      <div class="mb-3">
+        <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "登入密码", maxlength: 72, class: "form-control" %>
+      </div>
+      <div class="mb-3">
+        <%= form.submit "登入白泽系统", class: "btn btn-primary" %>
+        <small><%= link_to "忘记密码？", new_password_path %></small>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
