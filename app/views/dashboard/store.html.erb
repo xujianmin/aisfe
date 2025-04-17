@@ -51,11 +51,15 @@
     </div>
   </div>
   <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
-    <%= render "visits/form" %>
-    <hr />
-    <% @visits.each do |visit| %>
-      <%= visit.content %>
-    <% end %>
+    <div class="col-12 mt-3">
+      <%= link_to "新建拜访记录", new_store_visit_path(@store), class: "btn btn-primary" %>
+      <%= link_to "管理该店的拜访记录", store_visits_path(@store), class: "btn btn-outline-primary" %>
+    </div>
+    <div class="col-12 mt-3">
+      <% @visits.each_with_index do |visit, index| %>
+        <%= render "visit_of_store_item", visit: visit, index: index %>
+      <% end %>
+    </div>
   </div>
 </div>
 

@@ -1,4 +1,15 @@
-<div class="container mt-4">
-  <h2>新建访问记录 - <%= @store.name %></h2>
-  <%= render "form" %>
-</div> 
+<div class="card mt-3">
+  <div class="card-header">
+    <p class="fs-6 text-secondary mb-0">新建拜访记录 / 拜访人：<%= Current.user.email_address %></p>
+  </div>
+  <div class="card-body">
+    <p class="fs-5 text-center mb-0 "><%= @store.name %></p>
+  </div>
+  <div class="card-footer">
+    <small class="text-secondary m-0 float-end">
+      今天是：<%= Date.today.strftime("%Y-%m-%d") %>
+    </small>
+  </div>
+</div>
+
+<%= render "form" %>

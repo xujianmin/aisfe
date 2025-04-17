@@ -1,0 +1,12 @@
+<% if index.even? %>
+  <div class="card mb-3">
+<% else %>
+  <div class="card mb-3 text-bg-light">
+<% end %>
+  <div class="card-body">
+    <%= visit.content %>
+    <small class="text-secondary">
+      <%= visit.created_at.strftime("%Y-%m-%d %H:%M") %>
+    </small>
+  </div>
+</div>

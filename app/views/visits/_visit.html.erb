@@ -1,0 +1,29 @@
+<% if index.even? %>
+  <div class="card mb-3">
+<% else %>
+  <div class="card mb-3 text-bg-light">
+<% end %>
+  <div class="card-header">
+    <small class="text-secondary m-0 float-end">
+      拜访记录于：<%= visit.created_at.strftime("%Y-%m-%d %H:%M") %>
+    </small>
+  </div>
+  <div class="card-body">
+    <%= visit.content %>
+  </div>
+  <div class="card-footer">
+    <div class="row">
+      <div class="col-4 d-grid">
+        <%= link_to "查", store_visit_path(@store, visit), class: "btn btn-sm btn-info d-inline-block" %>
+      </div>
+      <div class="col-4 d-grid">
+        <%= link_to "改", edit_store_visit_path(@store, visit), class: "btn btn-sm btn-warning d-inline-block" %>
+      </div>
+      <div class="col-4">
+      <%= button_to "删", store_visit_path(@store, visit), method: :delete, form_class: "d-inline-block d-grid",
+          class: "btn btn-sm btn-danger", 
+          data: { turbo_confirm: "确定要删除这条访问记录吗？" } %>
+      </div>
+    </div>
+  </div>
+</div>
