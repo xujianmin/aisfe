@@ -5,4 +5,7 @@
   input {
     @extend .is-invalid;
   }
+  trix-editor {
+    @extend .is-invalid;
+  }
 }
