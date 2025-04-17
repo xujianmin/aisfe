@@ -10,6 +10,9 @@ zh-CN:
     models:
       store: "药店"
       clerk: "店员"
+      drug: "在库药品"
+      user: "用户"
+      visit: "拜访记录"
     attributes:
       store:
         name: 店名
@@ -21,6 +24,13 @@ zh-CN:
         last_name: 姓氏
         gender: 性别
         remark: 备注
+      drug:
+        product_name: 药品名称
+        nmc: 本位码
+      user:
+        email_address: 邮箱
+      visit:
+        content: 拜访记录详情
   date:
     abbr_day_names:
     - 周日
