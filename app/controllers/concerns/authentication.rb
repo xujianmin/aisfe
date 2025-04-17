@@ -3,6 +3,7 @@ module Authentication
 
   included do
     before_action :require_authentication
+    before_action :check_session_expiry
     helper_method :authenticated?
   end
 
@@ -19,6 +20,15 @@ module Authentication
 
     def require_authentication
       resume_session || request_authentication
+    end
+
+    def check_session_expiry
+      if Current.session&.expired?
+        terminate_session
+        redirect_to new_session_path, alert: "您的会话已过期，请重新登录"
+      else
+        Current.session&.touch_last_activity
+      end
     end
 
     def resume_session
@@ -39,7 +49,7 @@ module Authentication
     end
 
     def start_new_session_for(user)
-      user.sessions.create!(user_agent: request.user_agent, ip_address: request.remote_ip).tap do |session|
+      user.sessions.create!(user_agent: request.user_agent, ip_address: request.remote_ip, last_activity_at: Time.current).tap do |session|
         Current.session = session
         cookies.signed.permanent[:session_id] = { value: session.id, httponly: true, same_site: :lax }
       end

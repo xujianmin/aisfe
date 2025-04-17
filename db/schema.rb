@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_10_141945) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_17_045116) do
   create_table "clerks", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -35,6 +35,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_10_141945) do
     t.string "user_agent"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "last_activity_at"
     t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
