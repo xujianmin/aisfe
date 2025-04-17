@@ -1,6 +1,7 @@
 <nav class="navbar bg-body-tertiary">
   <div class="container-fluid">
     <%= link_to "白泽智创", root_path, class: "navbar-brand" %>
+    <% if Current.user %>
     <button class="navbar-toggler" 
             type="button" 
             data-bs-toggle="offcanvas" 
@@ -9,6 +10,7 @@
             aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+    <% end %>
   </div>
 
   <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
