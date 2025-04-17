@@ -44,5 +44,8 @@ module Aisfe
     config.i18n.default_locale = :'zh-CN'
     # 设置可用的语言
     config.i18n.available_locales = [ :'zh-CN', :en ]
+
+    # 服务器临时配置
+    config.hosts << "dify.usingnow.tech:3000"
   end
 end
