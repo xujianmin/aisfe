@@ -50,6 +50,12 @@
       <% end %>
     </div>
   </div>
-  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">...</div>
+  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
+    <%= render "visits/form" %>
+    <hr />
+    <% @visits.each do |visit| %>
+      <%= visit.content %>
+    <% end %>
+  </div>
 </div>
 

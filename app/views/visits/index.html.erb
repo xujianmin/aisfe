@@ -1,0 +1,26 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2><%= @store.name %> - 访问记录</h2>
+    <%= link_to "新建访问记录", new_store_visit_path(@store), class: "btn btn-primary" %>
+  </div>
+
+  <div class="list-group">
+    <% @visits.each do |visit| %>
+      <div class="list-group-item">
+        <div class="d-flex justify-content-between align-items-center">
+          <small class="mb-1">访问时间：<%= visit.created_at.strftime("%Y-%m-%d %H:%M") %></small>
+          <div>
+            <%= link_to "查", store_visit_path(@store, visit), class: "btn btn-sm btn-info" %>
+            <%= link_to "编", edit_store_visit_path(@store, visit), class: "btn btn-sm btn-warning" %>
+            <%= button_to "删", store_visit_path(@store, visit), method: :delete, 
+                class: "btn btn-sm btn-danger", 
+                data: { turbo_confirm: "确定要删除这条访问记录吗？" } %>
+          </div>
+        </div>
+        <div class="mt-2">
+          <%= visit.content.to_plain_text.truncate(100) %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div> 
