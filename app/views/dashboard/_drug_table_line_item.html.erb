@@ -1,5 +1,27 @@
-<tr>
+<tr id="stock_<%= stock.id %>">
   <td><%= stock.drug.product_name %></td>
-  <td><%= stock.quantity %></td>
-  <td><%= stock.distribution_quantity %></td>
+
+  <td data-controller="inline-edit"
+      data-inline-edit-url-value="<%= inline_edit_path(stock) %>">
+    <div data-inline-edit-target="display">
+      <%= stock.quantity %>
+    </div>
+    <%= form_with(model: stock,
+                  data: { inline_edit_target: "form", action: "submit->inline-edit#submit"},
+                  class: "d-none") do |f| %>
+      <%= f.number_field :quantity, class: "form-control" %>
+    <% end %>
+  </td>
+
+  <td data-controller="inline-edit"
+      data-inline-edit-url-value="<%= inline_edit_path(stock) %>">
+    <div data-inline-edit-target="display">
+      <%= stock.distribution_quantity %>
+    </div>
+    <%= form_with(model: stock,
+                  data: { inline_edit_target: "form", action: "submit->inline-edit#submit"},
+                  class: "d-none") do |f| %>
+      <%= f.number_field :distribution_quantity, class: "form-control" %>
+    <% end %>
+  </td>
 </tr>

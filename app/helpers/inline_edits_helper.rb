@@ -1,0 +1,2 @@
+module InlineEditsHelper
+end

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :stores do
     resources :visits
   end
+  resources :inline_edits, only: [ :update ]
   get "dashboard/index"
   get "dashboard/store/:store_id", to: "dashboard#store", as: "dashboard/store/"
   post "dashboard/store/:store_id", to: "dashboard#store"
