@@ -1,27 +1,36 @@
 <nav class="navbar bg-body-tertiary">
   <div class="container-fluid">
     <%= link_to "白泽智创", root_path, class: "navbar-brand" %>
-    <% if Current.user %>
-    <button class="navbar-toggler" 
-            type="button" 
-            data-bs-toggle="offcanvas" 
-            data-bs-target="#offcanvasNavbar" 
-            aria-controls="offcanvasNavbar" 
-            aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <% end %>
+    <div class="d-block float-end">
+      <button class="btn btn-outline-secondary" 
+              data-controller="theme"
+              data-action="click->theme#toggle">
+        <i class="bi bi-sun-fill" data-theme-target="icon"></i>
+      </button>
+      <% if Current.user %>
+        <button class="btn btn-outline-secondary" 
+                type="button" 
+                data-bs-toggle="offcanvas" 
+                data-bs-target="#offcanvasNavbar" 
+                aria-controls="offcanvasNavbar" 
+                aria-label="Toggle navigation">
+          <i class="bi bi-gear-fill" data-theme-target="icon"></i>
+        </button>
+      <% end %>
+    </div>
+    
   </div>
 
   <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-    <div class="offcanvas-header">
+    <div class="offcanvas-header pb-0">
       <h5 class="offcanvas-title" id="offcanvasNavbarLabel">我的菜单</h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-    <div class="offcanvas-body">
+    <hr />
+    <div class="offcanvas-body py-0">
       <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
         <li class="nav-item">
-          <%= link_to "工作台", dashboard_index_path, class: "nav-link" %>
+          <%= link_to "前往工作台", dashboard_index_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">用户管理</a>
@@ -39,11 +48,13 @@
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li>
-        <hr />
-        <li class="nav-item">
-          <%= button_to "退出系统", session_path, method: :delete, data: { turbo_confirm: "确定现在退出系统？" }, class: "nav-link" %>
-        </li>
       </ul>
+    </div>
+    <hr />
+    <div class="offcanvas-body pt-0">
+      <%= button_to "退出系统", session_path, method: :delete, 
+                        data: { turbo_confirm: "确定现在退出系统？" }, 
+                        class: "btn btn-outline-danger" %>
     </div>
   </div>
 
