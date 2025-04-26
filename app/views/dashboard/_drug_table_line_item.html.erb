@@ -9,7 +9,8 @@
     <%= form_with(model: stock,
                   data: { inline_edit_target: "form", action: "submit->inline-edit#submit"},
                   class: "d-none") do |f| %>
-      <%= f.number_field :quantity, class: "form-control" %>
+      <%= f.number_field :quantity, class: "form-control",
+                  data: { inline_edit_target: "input"} %>
     <% end %>
   </td>
 
@@ -21,7 +22,8 @@
     <%= form_with(model: stock,
                   data: { inline_edit_target: "form", action: "submit->inline-edit#submit"},
                   class: "d-none") do |f| %>
-      <%= f.number_field :distribution_quantity, class: "form-control" %>
+      <%= f.number_field :distribution_quantity, class: "form-control",
+                  data: { inline_edit_target: "input" } %>
     <% end %>
   </td>
 </tr>
