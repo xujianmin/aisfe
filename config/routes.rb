@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :stocks
+  resources :stocks do
+    resources :stock_change_logs, only: [ :index ]
+  end
   resources :drugs
   resource :session
   resources :passwords, param: :token

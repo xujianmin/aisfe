@@ -1,0 +1,2 @@
+module StockChangeLogsHelper
+end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_17_121708) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_26_110023) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -77,6 +77,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_17_121708) do
     t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
+  create_table "stock_change_logs", force: :cascade do |t|
+    t.integer "stock_id", null: false
+    t.integer "user_id", null: false
+    t.string "field"
+    t.integer "old_value"
+    t.integer "new_value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["stock_id"], name: "index_stock_change_logs_on_stock_id"
+    t.index ["user_id"], name: "index_stock_change_logs_on_user_id"
+  end
+
   create_table "stocks", force: :cascade do |t|
     t.integer "quantity"
     t.integer "distribution_quantity"
@@ -120,6 +132,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_17_121708) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "clerks", "stores"
   add_foreign_key "sessions", "users"
+  add_foreign_key "stock_change_logs", "stocks"
+  add_foreign_key "stock_change_logs", "users"
   add_foreign_key "stocks", "drugs"
   add_foreign_key "stocks", "stores"
   add_foreign_key "stores", "users"
