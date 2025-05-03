@@ -32,6 +32,10 @@ zh-CN:
         email_address: 邮箱
       visit:
         content: 拜访记录详情
+      stock_change_log:
+        fields:
+          quantity: 库存数量
+          distribution_quantity: 分销数量
   date:
     abbr_day_names:
     - 周日

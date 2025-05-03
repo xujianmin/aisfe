@@ -1,0 +1,30 @@
+<div class="card mb-2">
+  <div class="card-header">
+      修改于： <%= log.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+  </div>
+  <div class="card-body">
+    <p class="text-center fw-semibold">修改字段： <%= t("activerecord.attributes.stock_change_log.fields.#{log.field}") %></p>
+    <hr />
+    <div class="row">
+      <div class="col-4 text-center">
+        原值： <br />
+        <%= log.old_value %>
+      </div>
+      <div class="col-4 text-center fw-semibold text-primary">
+        新值： <br />
+        <%= log.new_value %>
+      </div>
+      <div class="col-4 text-center">
+        增减： <br />
+        <span class="<%= log.get_diveation > 0 ? 'badge text-bg-success' : 'badge text-bg-danger' %>">
+          <%= log.get_diveation > 0 ? '+' : '-' %>
+          <%= log.get_diveation.abs %>
+        </span>
+      </div>
+    </div>
+    
+  </div>
+  <div class="card-footer">
+    修改人： <%= log.user.email_address %>
+  </div>
+</div>

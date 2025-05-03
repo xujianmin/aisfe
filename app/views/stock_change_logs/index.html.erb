@@ -1,42 +1,25 @@
-<div class="container mt-4">
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2><%= @stock.drug.product_name %> - 库存变更记录</h2>
-    <%= link_to "返回", "javascript:history.back()", class: "btn btn-outline-secondary" %>
+<div class="card mt-3 mb-4">
+  <div class="card-header text-center text-lg-start">
+    <%= link_to @stock.store.name, dashboard_store_path(@stock.store), class: "link-offset-2" %> &gt; <%= @stock.drug.product_name %>
   </div>
-
-  <div class="card">
-    <div class="card-body">
-      <div class="table-responsive">
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <th>时间</th>
-              <th>操作人</th>
-              <th>字段</th>
-              <th>原值</th>
-              <th>新值</th>
-              <th>变更</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @logs.each do |log| %>
-              <tr>
-                <td><%= log.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
-                <td><%= log.user.email_address %></td>
-                <td><%= t("stock_change_logs.fields.#{log.field}") %></td>
-                <td><%= log.old_value %></td>
-                <td><%= log.new_value %></td>
-                <td>
-                  <% change = log.new_value - log.old_value %>
-                  <span class="<%= change > 0 ? 'text-success' : 'text-danger' %>">
-                    <%= change > 0 ? '+' : '' %><%= change %>
-                  </span>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+  <div class="card-body text-center">
+    <div class="row">
+      <div class="col-6 text-center">
+        <small class="text-secondary">当前药品库存</small>
+        <p class="fs-1 fw-bolder mb-0"><%= @stock.quantity %></p>
+      </div>
+      <div class="col-6 text-center">
+        <small class="text-secondary">药品分销数量</small>
+        <p class="fs-1 fw-bolder mb-0"><%= @stock.distribution_quantity %></p>
       </div>
     </div>
   </div>
 </div>
+
+<% unless @logs.blank? %>
+  <% @logs.each do |log| %>
+    <%= render "log", log: log %>
+  <% end %>
+<% else %>
+  <p class="text-center text-secondary">暂无库存变动记录</p>
+<% end %>
