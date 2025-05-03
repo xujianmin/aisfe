@@ -36,6 +36,20 @@
     <%= form.textarea :remark, class: "form-control", placeholder: "备注", rows: 5  %>
   </div>
 
+  <div class="mb-3">
+    <label class="form-label">客户倾向性</label>
+    <div>
+      <%= form.radio_button :customer_preference, 'A' %>
+      <%= form.label :customer_preference_A, 'A' %>
+      <%= form.radio_button :customer_preference, 'B' %>
+      <%= form.label :customer_preference_B, 'B' %>
+      <%= form.radio_button :customer_preference, 'C' %>
+      <%= form.label :customer_preference_C, 'C' %>
+      <%= form.radio_button :customer_preference, '' %>
+      <%= form.label :customer_preference_none, '不明' %>
+    </div>
+  </div>
+
   <div class= "mb-3" style="display: none">
     <%= form.label :store_id, style: "display: none", class: "form-label" %>
     <%= form.text_field :store_id, class: "form-control" %>

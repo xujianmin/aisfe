@@ -66,6 +66,6 @@ class ClerksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def clerk_params
-      params.expect(clerk: [ :first_name, :last_name, :gender, :remark, :store_id ])
+      params.expect(clerk: [ :first_name, :last_name, :gender, :remark, :store_id, :customer_preference ])
     end
 end

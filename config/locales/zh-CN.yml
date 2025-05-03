@@ -24,6 +24,7 @@ zh-CN:
         last_name: 姓氏
         gender: 性别
         remark: 备注
+        customer_preference: 客户倾向性
       drug:
         product_name: 药品名称
         nmc: 本位码
