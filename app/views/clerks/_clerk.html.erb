@@ -17,7 +17,36 @@
   <div class="card-body">
     <p class="mb-0 fs-5">
       客户倾向性：
-      <%= clerk.customer_preference ? clerk.customer_preference : "未明" %>
+      <b><%= clerk.customer_preference ? clerk.customer_preference : "未明" %></b>
+      <button class="btn btn-outline-primary ms-4"
+              type="button"
+              id="edit-btn-<%= clerk.id %>"
+              style="display: inline-block;"
+              onclick="document.getElementById('customer-preference-edit-<%= clerk.id %>').style.display='block';this.style.display='none'">
+        修改
+      </button>
+      <div id="customer-preference-edit-<%= clerk.id %>" style="display:none;">
+        <hr />
+        <%= form_with(model: clerk, url: inline_edit_path(clerk), method: :patch, local: true) do |form| %>
+          <%= hidden_field_tag :resource_type, "clerk" %>
+          <%= form.radio_button :customer_preference, 'A' %>
+          <%= form.label :customer_preference_A, 'A', class: "me-4 ms-2 fs-5" %>
+          <%= form.radio_button :customer_preference, 'B' %>
+          <%= form.label :customer_preference_B, 'B', class: "me-4 ms-2 fs-5" %>
+          <%= form.radio_button :customer_preference, 'C' %>
+          <%= form.label :customer_preference_C, 'C', class: "me-4 ms-2 fs-5" %>
+          <%= form.radio_button :customer_preference, '' %>
+          <%= form.label :customer_preference_none, '不明', class: "me-4 ms-2 fs-5" %>
+          <%= form.submit "保存", class: "btn btn-success ms-2" %>
+          <button type="button" class="btn btn-secondary ms-2"
+            onclick="
+              document.getElementById('customer-preference-edit-<%= clerk.id %>').style.display='none';
+              document.getElementById('edit-btn-<%= clerk.id %>').style.display='inline-block';
+            ">
+            取消
+          </button>
+        <% end %>
+      </div>
     </p>
     <hr />
     <span class="d-inline-flex px-2 py-1 me-1 mb-1 text-success-emphasis bg-success-subtle border border-success-subtle rounded-2">温和可信</span>
