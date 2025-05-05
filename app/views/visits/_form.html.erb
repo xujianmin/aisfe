@@ -16,9 +16,37 @@
     </div>
   <% end %>
 
+  <a class="btn btn-primary dropdown-toggle" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    拜访记录参考模板
+  </a>
+
+  <div class="collapse" id="collapseExample">
+    <div class="card card-body mt-3">
+      <p>
+        日期和时间：
+      </p>
+      <p>
+        拜访对象信息（门店店员）：
+      </p>
+      <p>
+        关键信息沟通：（产品信息分享，市场信息传递）
+      </p>
+      <p>
+        库存概况：
+      </p>
+      <p>
+        产品流向（销量）：
+      </p>
+      <p class="mb-0">
+        其他需要的信息：
+      </p>
+    </div>
+  </div>
+
   <div class="my-3">
     <%= form.rich_text_area :content, class: "form-control", rows: 10, 
-                            style: "min-height: 300px; max-height: 400px; overflow-y: auto;" %>
+                            style: "min-height: 300px; max-height: 400px; overflow-y: auto;", 
+                            placeholder: "请输入拜访记录，建议包含 - \n\n日期和时间：\n拜访对象信息：（门店店员）\n关键信息沟通：（产品信息分享，市场信息传递）\n库存概况：\n产品流向：（销量）\n其他信息：\n\n如有疑问可以点击上方“参考模板”按钮。" %>
   </div>
   <div class="row">
     <div class="actions col-6 d-grid">

@@ -28,3 +28,23 @@
     padding: 0.25rem;
   }
 }
+
+// Trix 按钮 dark 模式反白。
+[data-bs-theme="dark"] {
+  .trix-button--icon-bold::before,
+  .trix-button--icon-italic::before,
+  .trix-button--icon-strike::before,
+  .trix-button--icon-link::before,
+  .trix-button--icon-heading-1::before,
+  .trix-button--icon-quote::before,
+  .trix-button--icon-code::before,
+  .trix-button--icon-bullet-list::before,
+  .trix-button--icon-number-list::before,
+  .trix-button--icon-decrease-nesting-level::before,
+  .trix-button--icon-increase-nesting-level::before,
+  .trix-button--icon-attach::before,
+  .trix-button--icon-undo::before,
+  .trix-button--icon-redo::before {
+    filter: invert(1);
+  }
+}
