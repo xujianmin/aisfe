@@ -7,13 +7,13 @@ class InlineEditsController < ApplicationController
         render turbo_stream: turbo_stream.replace(
           "clerk_#{@clerk.id}",
           partial: "clerks/clerk",
-          locals: { clerk: @clerk }
+          locals: { clerk: @clerk, index: params[:index].to_i }
         )
       else
         render turbo_stream: turbo_stream.replace(
           dom_id(@clerk),
           partial: "clerks/clerk",
-          locals: { clerk: @clerk }
+          locals: { clerk: @clerk, index: params[:index].to_i }
         )
       end
     when "stock"
@@ -41,7 +41,7 @@ class InlineEditsController < ApplicationController
   private
 
   def clerk_params
-    params.require(:clerk).permit(:first_name, :last_name, :gender, :remark, :store_id, :customer_preference)
+    params.require(:clerk).permit(:first_name, :last_name, :gender, :remark, :store_id, :customer_preference, :resigned)
   end
 
   def stock_params

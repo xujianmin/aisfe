@@ -41,9 +41,23 @@ class ClerksController < ApplicationController
       if @clerk.update(clerk_params)
         format.html { redirect_to @clerk, notice: "Clerk was successfully updated." }
         format.json { render :show, status: :ok, location: @clerk }
+        format.turbo_stream {
+          render turbo_stream: turbo_stream.replace(
+            @clerk,
+            partial: "clerks/clerk",
+            locals: { clerk: @clerk }
+          )
+        }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @clerk.errors, status: :unprocessable_entity }
+        format.turbo_stream {
+          render turbo_stream: turbo_stream.replace(
+            @clerk,
+            partial: "clerks/clerk",
+            locals: { clerk: @clerk }
+          )
+        }
       end
     end
   end
@@ -66,6 +80,6 @@ class ClerksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def clerk_params
-      params.expect(clerk: [ :first_name, :last_name, :gender, :remark, :store_id, :customer_preference ])
+      params.expect(clerk: [ :first_name, :last_name, :gender, :remark, :store_id, :customer_preference, :resigned ])
     end
 end

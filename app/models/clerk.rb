@@ -1,6 +1,6 @@
 class Clerk < ApplicationRecord
   before_validation :blank_customer_preference_to_nil
-  
+
   belongs_to :store
 
   validates :first_name, :last_name, presence: true

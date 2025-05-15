@@ -1,4 +1,4 @@
-<div id="<%= dom_id clerk %>" class="card mb-3">
+<div id="<%= dom_id clerk %>" class="card mb-3" data-controller="clerk">
   <div class="card-header">
     <div class="row">
       <div class="col-auto">
@@ -11,6 +11,26 @@
       </div>
       <div class="col-auto fs-5">
         <%= clerk.gender %>
+      </div>
+      <div class="col-auto ms-auto">
+        <div class="form-check form-switch">
+          <%= form_with(model: clerk, url: inline_edit_path(clerk), method: :patch, data: { turbo: true }) do |form| %>
+            <%= hidden_field_tag :resource_type, "clerk" %>
+            <%= hidden_field_tag :index, local_assigns[:index] if local_assigns.has_key?(:index) %>
+            <%= form.check_box :resigned, 
+                class: "form-check-input", 
+                data: { 
+                  action: "change->clerk#toggleResigned",
+                  bs_placement: "left",
+                  turbo_confirm: clerk.resigned ? "是否确认该店员已复职？" : "是否确认该店员已离职？"
+                } %>
+            <%= form.label :resigned, class: "form-check-label" do %>
+              <span class="<%= clerk.resigned ? 'text-danger' : 'text-success' %>">
+                <%= clerk.resigned ? '已离职' : '在职' %>
+              </span>
+            <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

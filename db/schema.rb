@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_03_080538) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_06_090752) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -58,6 +58,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_03_080538) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "customer_preference"
+    t.boolean "resigned", default: false, null: false
     t.index ["store_id"], name: "index_clerks_on_store_id"
   end
 
