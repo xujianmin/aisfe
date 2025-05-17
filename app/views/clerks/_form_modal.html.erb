@@ -1,0 +1,81 @@
+<div class="card mb-3">
+  <div class="card-body">
+    <%= form_with(model: clerk, data: { action: "turbo:submit-end->form#handleSubmit" }) do |form| %>
+      <% if clerk.errors.any? %>
+        <div class="alert alert-danger alert-dismissible fade show">
+          <strong><%= t('errors.template.header', 
+                      count: clerk.errors.count, 
+                      model: clerk.class.model_name.human) %>
+          </strong>
+
+          <ul class="m-0">
+            <% clerk.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+          
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <% end %>
+
+      <div class="row mb-3">
+        <div class="col-6">
+          <%= form.label :last_name, "姓氏", class: "form-label" %>
+          <%= form.text_field :last_name, class: "form-control", placeholder: "请输入姓氏" %>
+        </div>
+        <div class="col-6">
+          <%= form.label :first_name, "名字", class: "form-label" %>
+          <%= form.text_field :first_name, class: "form-control", placeholder: "请输入名字" %>
+        </div>
+      </div>
+
+      <div class="mb-3 d-flex align-items-center">
+        <label class="form-label mb-0 me-3">性别</label>
+        <div class="form-check form-check-inline">
+          <%= form.radio_button :gender, '男', checked: true, class: "form-check-input" %>
+          <%= form.label :gender_男, '男', class: "form-check-label" %>
+        </div>
+        <div class="form-check form-check-inline">
+          <%= form.radio_button :gender, '女', class: "form-check-input" %>
+          <%= form.label :gender_女, '女', class: "form-check-label" %>
+        </div>
+      </div>
+
+      <div class="mb-3 d-flex align-items-center">
+        <label class="form-label mb-0 me-3">客户倾向性</label>
+        <div class="form-check form-check-inline" >
+          <%= form.radio_button :customer_preference, 'A' %>
+          <%= form.label :customer_preference_A, 'A' %>
+        </div>
+        <div class="form-check form-check-inline">
+          <%= form.radio_button :customer_preference, 'B' %>
+          <%= form.label :customer_preference_B, 'B' %>
+        </div>
+        <div class="form-check form-check-inline">
+          <%= form.radio_button :customer_preference, 'C' %>
+          <%= form.label :customer_preference_C, 'C' %>
+        </div>
+        <div class="form-check form-check-inline">
+          <%= form.radio_button :customer_preference, '' %>
+          <%= form.label :customer_preference_none, '未明' %>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :remark, "备注", class: "form-label" %>
+        <%= form.text_area :remark, class: "form-control", rows: 3 %>
+      </div>
+
+      <%= form.hidden_field :store_id %>
+
+      <div class="row">
+        <div class="col-8">
+          <%= form.submit "保存", class: "btn btn-primary w-100" %>
+        </div>
+        <div class="col-4">
+          <button type="button" class="btn btn-outline-danger w-100" data-action="form#toggleForm">取消</button>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div> 

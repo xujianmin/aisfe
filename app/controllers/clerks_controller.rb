@@ -26,9 +26,22 @@ class ClerksController < ApplicationController
 
     respond_to do |format|
       if @clerk.save
+        format.turbo_stream {
+          render turbo_stream: [
+            turbo_stream.append("clerks", partial: "clerks/clerk", locals: { clerk: @clerk, index: @clerk.store.clerks.count - 1 }),
+            turbo_stream.replace("clerk_count", partial: "clerks/count", locals: { count: @clerk.store.clerks.count })
+          ]
+        }
         format.html { redirect_to store_url(@clerk.store), notice: "Clerk was successfully created." }
         format.json { render :show, status: :created, location: @clerk }
       else
+        format.turbo_stream {
+          render turbo_stream: turbo_stream.replace(
+            "new_clerk_form",
+            partial: "clerks/form_modal",
+            locals: { clerk: @clerk }
+          )
+        }
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @clerk.errors, status: :unprocessable_entity }
       end
