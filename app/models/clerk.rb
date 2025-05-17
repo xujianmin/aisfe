@@ -5,6 +5,10 @@ class Clerk < ApplicationRecord
 
   validates :first_name, :last_name, presence: true
 
+  scope :resigned, -> { where(resigned: true) }
+  scope :active, -> { where(resigned: false) }
+  scope :created_this_month, -> { where(created_at: Time.current.beginning_of_month..Time.current.end_of_month) }
+
   # enum customer_preference: {
   #   A: "A",
   #   B: "B",
